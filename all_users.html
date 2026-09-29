@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitBuddy - All Users & Workout Plans</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 24px;
+        }
+        h1 {
+            text-align: center;
+            color: #111827;
+            margin-bottom: 24px;
+        }
+        .top-bar {
+            margin-bottom: 16px;
+        }
+        .top-bar a {
+            display: inline-block;
+            background: #3b82f6;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        th {
+            background-color: #2596be;
+            color: #ffffff;
+            text-align: left;
+            padding: 12px;
+            font-size: 0.95rem;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+            font-size: 0.9rem;
+        }
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.82rem;
+            margin: 0;
+            max-height: 360px;
+            overflow-y: auto;
+            background: #f9fafb;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>📋 FitBuddy - All Users & Workout Plans</h1>
+    <div class="top-bar">
+        <a href="/">← Back to Workout Generator</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Weight (kg)</th>
+                <th>Goal</th>
+                <th>Intensity</th>
+                <th>Original Plan</th>
+                <th>Updated Plan</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.age }}</td>
+                <td>{{ user.weight }}</td>
+                <td>{{ user.goal }}</td>
+                <td>{{ user.intensity }}</td>
+                <td><pre>{{ user.original_plan }}</pre></td>
+                <td><pre>{{ user.updated_plan }}</pre></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

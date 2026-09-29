@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Workout Plan - FitBuddy</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+                        url('/static/images/gym-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #1e293b;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.97);
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #111827;
+        }
+        .user-info {
+            background: #f8fafc;
+            padding: 16px 20px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+        }
+        .user-info p {
+            margin: 6px 0;
+            color: #1f2937;
+        }
+        pre {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            color: #111827;
+        }
+        .tip-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin: 24px 0;
+            color: #1e3a8a;
+        }
+        .feedback-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1f2937;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #3b82f6;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2563eb;
+        }
+        .badge-updated {
+            background: #dcfce7;
+            color: #166534;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 24px;
+        }
+        .nav-links a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏋️ Your Personalized Workout Plan</h1>
+
+        <h2>User Information</h2>
+        <div class="user-info">
+            <p><strong>Name:</strong> {{ username }}</p>
+            <p><strong>User ID:</strong> {{ user_id }}</p>
+            <p><strong>Age:</strong> {{ age }}</p>
+            <p><strong>Weight:</strong> {{ weight }} kg</p>
+            <p><strong>Goal:</strong> {{ goal }}</p>
+            <p><strong>Intensity:</strong> {{ intensity }}</p>
+        </div>
+
+        <h2>Workout Plan</h2>
+        <pre>{{ workout_plan }}</pre>
+
+        <h2>💡 Nutrition Tip</h2>
+        <div class="tip-box">
+            {{ nutrition_tip }}
+        </div>
+
+        <div class="feedback-section" id="feedback-section">
+            <h2>💬 Share Your Feedback</h2>
+            <form action="/submit-feedback#feedback-section" method="post">
+                <label for="user_id">Your Unique User ID:</label>
+                <input type="number" id="user_id" name="user_id" value="{{ user_id }}" placeholder="Enter the same User ID used to generate your plan" required>
+
+                <label for="feedback">Your Feedback:</label>
+                <textarea id="feedback" name="feedback" rows="3" placeholder="Let us know how we can improve your plan (e.g., 'Add more cardio' or 'Include yoga on Day 4')..." required></textarea>
+
+                <button type="submit">Submit Feedback</button>
+            </form>
+
+            {% if updated %}
+            <div class="badge-updated">
+                ✅ Your plan has been updated based on your feedback!
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="nav-links">
+            <a href="/">← Create New Plan</a>
+            <a href="/view-all-users">View All Users (Admin) →</a>
+        </div>
+    </div>
+</body>
+</html>
